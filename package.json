@@ -4,14 +4,17 @@
   "private": true,
   "scripts": {
     "start": "node-dev ./bin/www",
-    "debug":"node-dev --inspect-brk=9229 ./bin/www"
+    "debug": "node-dev --inspect-brk=9229 ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "http-assert": "^1.4.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.11",
     "morgan": "~1.9.1",
+    "multer": "^1.4.2",
     "node-dev": "^4.0.0"
   }
 }
