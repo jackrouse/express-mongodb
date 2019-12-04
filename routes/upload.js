@@ -34,7 +34,9 @@ router.post('/', upload.single('avatar'), function(req, res, next) {
       filename:file.filename
     },
     {
-      $set:file
+      $set:{
+        ...file
+      }
     },
     {
       new:true

@@ -9,7 +9,10 @@ const uploadSchema = mongoose.Schema({
   path: String,
   size: Number,
   url:String
-}, { collection: 'uploadFile'})
+}, {
+  timestamps: { createdAt: 'createTime',updatedAt:'createTime'},
+  collection: 'uploadFile'
+})
 //这里mongoose.Schema要写上第二个参数，明确指定到数据库中的哪个表取数据
 
 
