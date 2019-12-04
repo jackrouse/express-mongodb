@@ -67,7 +67,7 @@ router.delete("/delete/:id", (req, res) => {
   uploadModel.findById(req.params.id)
     .then(result => {
       // const url = path.resolve('..','..',result.path)
-      const url = path.resolve('..','..',result.path)
+      const url = result.path
       return fsPromises.unlink(url)
     })
     .then(()=>{
