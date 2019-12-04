@@ -91,7 +91,6 @@ router.get("/getHeroDetail/:id", (req, res) => {
 // 添加一个英雄信息路由
 router.post("/addHero", (req, res) => {
   // 使用Hero model上的create方法储存数据
-  console.log(req)
   Hero.create(req.body, (err, hero) => {
     if (err) {
       res.json({
@@ -106,12 +105,10 @@ router.post("/addHero", (req, res) => {
     }
   });
 
-  console.log(req.body)
 });
 
 //更新一条英雄信息数据路由
 router.put("/modifyHero/:id", (req, res) => {
-  console.log(req.params)
   Hero.findOneAndUpdate(
     { _id: req.params.id },
     {

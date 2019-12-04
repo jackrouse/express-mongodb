@@ -11,7 +11,6 @@ const comments = require("../models/comments");
 
 /* GET home page. */
 router.post('/create', function(req, res, next) {
-    console.log(req)
     articleListSchema.create(req.body, (err, result) => {
       if (err) {
         res.json({
@@ -135,7 +134,6 @@ function filterObj(obj,arr){
 
 //更新一条英雄信息数据路由
 router.put("/modify/:id", (req, res) => {
-  console.log(req.params)
   const {title,summary,content,publishTime,importance,author,imgUrl} = req.body
   articleListSchema.findOneAndUpdate(
     { _id: req.params.id },
@@ -161,7 +159,6 @@ router.put("/modify/:id", (req, res) => {
 
 router.post('/comment/:id', async function(req, res, next) {
   const {content,from} = req.body
-  console.log(req)
 
 
 

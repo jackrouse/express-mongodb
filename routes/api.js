@@ -38,7 +38,6 @@ router.get('/create', function(req, res, next) {
   }
   Test.find({name})
   .then(qq=>{
-    console.log(qq)
     if(qq.length){
       return Promise.reject(name+'已存在')
     }
