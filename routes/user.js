@@ -3,6 +3,8 @@ var router = express.Router();
 const jwt = require("jsonwebtoken")
 const userSchema = require("../models/userSchema")
 const authMiddleware = require("../middleware/auth")
+const assert = require("http-assert");
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -59,7 +61,8 @@ router.post('/login', function (req, res, next) {
       }
       if (data) {
         const token = jwt.sign(content, 'bing', {
-          expiresIn: 60 * 60 * 1 // 1小时过期
+          // expiresIn: 60 * 60 * 1 // 1小时过期
+          expiresIn: '7d' // 7天
         });
         res.json({
           message: "登录成功",
@@ -137,7 +140,7 @@ router.get('/info', authMiddleware, async (req, res, next) => {
     });
   } else {
     res.json({
-      message: "账号或密码错误",
+      message: "获取用户信息失败",
       status: "fail",
     });
   }

@@ -9,6 +9,7 @@ var apiRouter = require('./routes/api');
 var heroRouter = require('./routes/hero');
 var article = require('./routes/article');
 var upload = require('./routes/upload');
+var banner = require('./routes/banner');
 
 var mongoose = require("mongoose");
 
@@ -42,5 +43,6 @@ app.use('/api', apiRouter);
 app.use('/hero', heroRouter);
 app.use('/article', article);
 app.use('/upload', upload);
+app.use('/banner', banner);
 
 module.exports = app;

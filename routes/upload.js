@@ -8,7 +8,7 @@ const multer  = require('multer');
 var router = express.Router();
 
 const uploadModel = require("../models/uploadSchema");
-
+const bannerSchema = require("../models/bannerSchema");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -92,14 +92,35 @@ router.post('/getList', async function(req, res, next) {
   const query = req.body
   const page = +query.page || 1;
   const limit = +query.limit || 10;
-  // articleListSchema
-  // .findById(req.params.id)
-  // .populate('comments')
-  // comments
-  // .find({article:req.params.id})
+  const sort = query.sort
+
+  
+  // const _id = query.id
+  // const url = query.url
+  const sqlQurey = {}
+  if(query.id){
+    sqlQurey._id = query.id
+  }
+  if(query.url){
+    sqlQurey.url = new RegExp(query.url)
+  }
+  if(query.isFilter){
+    const imgsModle = await bannerSchema.find({},{imgUrl:1})
+    const imgs = imgsModle.map(x=>x.imgUrl)
+    sqlQurey.url = {
+      $nin:imgs
+    }
+  }
+
+  console.log(query)
   const total = await uploadModel.countDocuments()
   uploadModel
-  .find({})
+  // .find({
+  //   ...(_id&&{_id}),
+  //   ...(url&&{url:new RegExp(url)}),
+  // })
+  .find(sqlQurey)
+  .sort(sort)
   .skip((page - 1)*limit)
   //对剩下来的数据进行限制返回个数
   .limit(limit)

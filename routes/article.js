@@ -93,6 +93,11 @@ router.delete("/delete/:id", (req, res) => {
   articleListSchema.findOneAndRemove({
     _id: req.params.id
   })
+  .then(()=>{
+    return comments.findOneAndRemove({
+      article: req.params.id
+    })
+  })
     .then(result => res.json({
       status:"success",
       code:20000,

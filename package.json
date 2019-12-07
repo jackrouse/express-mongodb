@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node-dev ./bin/www",
-    "debug": "node-dev --inspect-brk=9229 ./bin/www"
+    "debug": "node-dev --inspect ./bin/www",
+    "debug1": "node-dev --inspect-brk=9229 ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
